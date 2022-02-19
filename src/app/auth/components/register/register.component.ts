@@ -1,5 +1,10 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  FormControl,
+  FormGroup,
+  FormBuilder,
+  Validators,
+} from '@angular/forms';
 import {
   tuiInputPasswordOptionsProvider,
   TUI_PASSWORD_TEXTS,
@@ -24,16 +29,23 @@ import { of } from 'rxjs';
     },
   ],
 })
-export class RegisterComponent {
-  readonly userForm = new FormGroup({
-    username: new FormControl('username', Validators.required),
-    email: new FormControl('email', Validators.required),
-    password: new FormControl('password', Validators.required),
-  });
+export class RegisterComponent implements OnInit {
+  userForm: FormGroup;
+  constructor(private fb: FormBuilder) {}
 
   onSubmit(): void {
     console.log(this.userForm.value);
   }
 
-  initializeForm(): void {}
+  initializeForm(): void {
+    this.userForm = this.fb.group({
+      username: ['', Validators.required],
+      email: ['', Validators.required],
+      password: ['', Validators.required],
+    });
+  }
+
+  ngOnInit(): void {
+    this.initializeForm();
+  }
 }
