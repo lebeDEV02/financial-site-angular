@@ -1,40 +1,19 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import {
-  FormControl,
-  FormGroup,
-  FormBuilder,
-  Validators,
-} from '@angular/forms';
-import {
-  tuiInputPasswordOptionsProvider,
-  TUI_PASSWORD_TEXTS,
-} from '@taiga-ui/kit';
-import { of } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { registerAction } from '../../store/actions';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [
-    tuiInputPasswordOptionsProvider({
-      icons: {
-        hide: 'tuiIconLockLarge',
-        show: 'tuiIconLockOpenLarge',
-      },
-    }),
-    {
-      provide: TUI_PASSWORD_TEXTS,
-      useValue: of(['']),
-    },
-  ],
 })
 export class RegisterComponent implements OnInit {
   userForm: FormGroup;
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private store: Store) {}
 
   onSubmit(): void {
-    console.log(this.userForm.value);
+    this.store.dispatch(registerAction(this.userForm.value));
   }
 
   initializeForm(): void {

@@ -2,27 +2,19 @@
 		<main class="register-page">
 			<div class="register-page__container">
 				<h1 class="register-page__title">Sign up</h1>
-				<p class="register-page__link-wrapper"><a tuiLink routerLink="/components/link" mode="positive" class="register-page__link">Есть аккаунт?</a></p>
+				<p class="register-page__link-wrapper"><a routerLink="/components/link" class="register-page__link">Есть аккаунт?</a></p>
 				<form class="register-page__form" [formGroup]="userForm" (submit)="onSubmit()">
 					<fieldset class="register-page__form-fieldset">
 						<fieldset class="register-page__input-fieldset">
-							<tui-input formControlName="username" tuiMode="onLight">
-								Type a text
-								<input tuiTextfield type="text" />
-							</tui-input>
+								<input formControlName="username" type="text" />
 						</fieldset>
 						<fieldset class="register-page__input-fieldset">
-							<tui-input formControlName="email" tuiMode="onLight">
-								Type an email
-								<input tuiTextfield type="email" />
-							</tui-input>
+								<input formControlName="email" type="email" />
 						</fieldset>
 						<fieldset class="register-page__input-fieldset">
-							<tui-input-password formControlName="password" tuiMode="onLight">
-								Type a password
-							</tui-input-password>
+							<input type="password" formControlName="password" tuiMode="onLight">
 						</fieldset>
-							<button tuiButton type="submit" appearance="primary" class="register-page__button" tuiMode="onLight">Sign Up</button>
+							<button type="submit" class="register-page__button">Sign Up</button>
 					</fieldset>
 				</form>
 			</div>

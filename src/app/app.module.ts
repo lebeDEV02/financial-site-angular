@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { TuiRootModule } from '@taiga-ui/core';
-import { TuiInputModule } from '@taiga-ui/kit';
-
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [AppComponent],
@@ -13,8 +13,12 @@ import { AuthModule } from './auth/auth.module';
     BrowserModule,
     AppRoutingModule,
     AuthModule,
-    TuiRootModule,
-    TuiInputModule,
+    StoreModule.forRoot([]),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production,
+      autoPause: true,
+    }),
   ],
   bootstrap: [AppComponent],
 })
