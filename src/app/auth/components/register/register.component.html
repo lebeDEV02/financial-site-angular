@@ -22,7 +22,7 @@
 								Type a password
 							</tui-input-password>
 						</fieldset>
-							<button tuiButton type="submit" class="register-page__button">
+							<button tuiButton type="submit" class="register-page__button" [disabled]="	isSubmitting$ | async">
 								Sign Up
 							</button>
 					</fieldset>

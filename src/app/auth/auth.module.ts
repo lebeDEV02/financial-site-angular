@@ -5,6 +5,11 @@ import { RegisterComponent } from './components/register/register.component';
 import { TuiInputModule, TuiInputPasswordModule } from '@taiga-ui/kit';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TuiModeModule, TuiButtonModule } from '@taiga-ui/core';
+import { StoreModule } from '@ngrx/store';
+import { reducers } from './store/reducers';
+import { AuthService } from './services/auth.service';
+import { EffectsModule } from '@ngrx/effects';
+import { RegisterEffect } from './store/effects/register.effect';
 const routes = [
   {
     path: 'register',
@@ -22,7 +27,10 @@ const routes = [
     TuiInputPasswordModule,
     TuiModeModule,
     TuiButtonModule,
+    StoreModule.forFeature('auth', reducers),
+    EffectsModule.forFeature([RegisterEffect]),
   ],
   declarations: [RegisterComponent],
+  providers: [AuthService],
 })
 export class AuthModule {}

@@ -1,7 +1,11 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Store } from '@ngrx/store';
-import { registerAction } from '../../store/actions';
+import { Store, select } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { AppStateInterface } from 'src/app/shared/types/appState.interface';
+import { registerAction } from '../../store/actions/register.action/register.action';
+import { isSubmittingSelector } from '../../store/selectors';
+import { RegisterRequestInterface } from '../../types/registerRequest.interface.';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -10,10 +14,18 @@ import { registerAction } from '../../store/actions';
 })
 export class RegisterComponent implements OnInit {
   userForm: FormGroup;
-  constructor(private fb: FormBuilder, private store: Store) {}
+  isSubmitting$: Observable<boolean>;
+
+  constructor(
+    private fb: FormBuilder,
+    private store: Store<AppStateInterface>
+  ) {}
 
   onSubmit(): void {
-    this.store.dispatch(registerAction(this.userForm.value));
+    const request: RegisterRequestInterface = {
+      user: this.userForm.value,
+    };
+    this.store.dispatch(registerAction({ request }));
   }
 
   initializeForm(): void {
@@ -24,7 +36,12 @@ export class RegisterComponent implements OnInit {
     });
   }
 
+  initializeValues(): void {
+    this.isSubmitting$ = this.store.pipe(select(isSubmittingSelector));
+  }
+
   ngOnInit(): void {
     this.initializeForm();
+    this.initializeValues();
   }
 }
