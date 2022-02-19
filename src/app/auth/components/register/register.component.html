@@ -6,15 +6,25 @@
 				<form class="register-page__form" [formGroup]="userForm" (submit)="onSubmit()">
 					<fieldset class="register-page__form-fieldset">
 						<fieldset class="register-page__input-fieldset">
-								<input formControlName="username" type="text" />
+								<tui-input formControlName="username" tuiMode="onLight">
+									Type an username
+									<input tuiTextfield />
+								</tui-input>
 						</fieldset>
 						<fieldset class="register-page__input-fieldset">
-								<input formControlName="email" type="email" />
+								<tui-input tuiTextfieldSize="m" formControlName="email" tuiMode="onLight">
+									Type an email
+									<input tuiTextfield type="email" />
+								</tui-input>
 						</fieldset>
 						<fieldset class="register-page__input-fieldset">
-							<input type="password" formControlName="password" tuiMode="onLight">
+							<tui-input-password formControlName="password" tuiMode="onLight">
+								Type a password
+							</tui-input-password>
 						</fieldset>
-							<button type="submit" class="register-page__button">Sign Up</button>
+							<button tuiButton type="submit" class="register-page__button">
+								Sign Up
+							</button>
 					</fieldset>
 				</form>
 			</div>
