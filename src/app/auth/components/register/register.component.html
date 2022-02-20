@@ -3,6 +3,7 @@
 			<div class="register-page__container">
 				<h1 class="register-page__title">Sign up</h1>
 				<p class="register-page__link-wrapper"><a routerLink="/components/link" class="register-page__link">Есть аккаунт?</a></p>
+				<app-validation-errors *ngIf="validationErrors$ | async" [validationErrors]="validationErrors$ | async"></app-validation-errors>
 				<form class="register-page__form" [formGroup]="userForm" (submit)="onSubmit()">
 					<fieldset class="register-page__form-fieldset">
 						<fieldset class="register-page__input-fieldset">

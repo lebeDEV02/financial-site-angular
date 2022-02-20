@@ -10,6 +10,8 @@ import { reducers } from './store/reducers';
 import { AuthService } from './services/auth.service';
 import { EffectsModule } from '@ngrx/effects';
 import { RegisterEffect } from './store/effects/register.effect';
+import { BackendErrorsMessagesModule } from '../shared/modules/backendErrorsMessages.module';
+import { PersistenceService } from '../shared/services/persistence.service';
 const routes = [
   {
     path: 'register',
@@ -29,8 +31,9 @@ const routes = [
     TuiButtonModule,
     StoreModule.forFeature('auth', reducers),
     EffectsModule.forFeature([RegisterEffect]),
+    BackendErrorsMessagesModule,
   ],
   declarations: [RegisterComponent],
-  providers: [AuthService],
+  providers: [AuthService, PersistenceService],
 })
 export class AuthModule {}
