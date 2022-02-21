@@ -1,0 +1,27 @@
+<main class="login-page">
+	<div class="login-page__container">
+		<h1 class="login-page__title">Sign In</h1>
+		<p class="login-page__link-wrapper"><a routerLink="/register" class="login-page__link">Зарегистрируйтесь</a></p>
+		<app-validation-errors *ngIf="validationErrors$ | async" [validationErrors]="validationErrors$ | async">
+		</app-validation-errors>
+		<form class="login-page__form" [formGroup]="userForm" (submit)="onSubmit()">
+			<fieldset class="login-page__form-fieldset">
+				<fieldset class="login-page__input-fieldset">
+					<tui-input tuiTextfieldSize="m" formControlName="email" tuiMode="onLight">
+						Type an email
+						<input tuiTextfield type="email" />
+					</tui-input>
+				</fieldset>
+				<fieldset class="login-page__input-fieldset">
+					<tui-input-password formControlName="password" tuiMode="onLight">
+						Type a password
+					</tui-input-password>
+				</fieldset>
+				<button tuiButton type="submit" class="login-page__button" [disabled]="	isSubmitting$ | async">
+					Sign In
+				</button>
+			</fieldset>
+		</form>
+	</div>
+</main>
+<router-outlet></router-outlet>

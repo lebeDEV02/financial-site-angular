@@ -1,8 +1,8 @@
 import { createAction, props } from '@ngrx/store';
 import { CurrentUserInterface } from 'src/app/shared/types/currentUser.interface';
 import { ValidationErrorsInterface } from 'src/app/shared/types/validationErrors.interface';
-import { RegisterRequestInterface } from '../../../types/registerRequest.interface.';
-import { ActionTypes } from '../../actionTypes';
+import { RegisterRequestInterface } from '../../types/registerRequest.interface';
+import { ActionTypes } from '../actionTypes';
 
 export const registerAction = createAction(
   ActionTypes.REGISTER,

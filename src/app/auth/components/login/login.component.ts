@@ -4,19 +4,19 @@ import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppStateInterface } from 'src/app/shared/types/appState.interface';
 import { ValidationErrorsInterface } from 'src/app/shared/types/validationErrors.interface';
-import { registerAction } from '../../store/actions/register.action';
+import { loginAction } from '../../store/actions/login.action';
 import {
   isSubmittingSelector,
   validationErrorsSelector,
 } from '../../store/selectors';
-import { RegisterRequestInterface } from '../../types/registerRequest.interface';
+import { LoginRequestInterface } from '../../types/loginRequest.interface';
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss'],
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RegisterComponent implements OnInit {
+export class LoginComponent implements OnInit {
   userForm: FormGroup;
   isSubmitting$: Observable<boolean>;
   validationErrors$: Observable<ValidationErrorsInterface>;
@@ -27,15 +27,14 @@ export class RegisterComponent implements OnInit {
   ) {}
 
   onSubmit(): void {
-    const request: RegisterRequestInterface = {
+    const request: LoginRequestInterface = {
       user: this.userForm.value,
     };
-    this.store.dispatch(registerAction({ request }));
+    this.store.dispatch(loginAction({ request }));
   }
 
   initializeForm(): void {
     this.userForm = this.fb.group({
-      username: ['', Validators.required],
       email: ['', Validators.required],
       password: ['', Validators.required],
     });

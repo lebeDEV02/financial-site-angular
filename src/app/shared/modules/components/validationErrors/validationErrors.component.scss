@@ -1,0 +1,7 @@
+.validation-errors {
+  margin: 0 2rem 1.5rem;
+  &__item {
+    color: var(--tui-negative-night-hover);
+    font-weight: 700;
+  }
+}
